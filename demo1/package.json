@@ -1,0 +1,12 @@
+{
+  "name": "electron_demo1",
+  "version": "1.0.0",
+  "description": "electron demo1",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "wenq",
+  "license": "ISC"
+}
