@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:04:48
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-10 22:20:04
+ * @LastEditTime: 2020-03-10 22:35:12
  -->
 ### Electron demos
 
@@ -17,7 +17,7 @@
 - [Electron 文档/API](https://www.electronjs.org/docs/api)
 - [Electron 打包](https://segmentfault.com/a/1190000013924153)
   
-说明：electron应用的开发、调试、打包、部署等全套内容，在其官方文档中都有包含，不必去网上一点一点散乱的去查找。
+`说明：electron应用的开发、调试、打包、部署等全套内容，在其官方文档中都有包含，不必去网上一点一点散乱的去查找。`
 
 ### **`对Electron的理解:`**
 ```
