@@ -13,15 +13,17 @@ const { app, BrowserWindow } = require('electron')
 function createWindow () {
   // 创建浏览器窗口
   let win = new BrowserWindow({
-    width: 800,  //窗口大小
-    height: 600,
+    width: 1300,
+    height: 800,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   // 加载index.html文件
-  win.loadFile('index.html')
+  // win.loadFile('index.html')
+
+  win.loadFile('cosmic.html')
 }
 
 //electron app生命周期方法：ready
