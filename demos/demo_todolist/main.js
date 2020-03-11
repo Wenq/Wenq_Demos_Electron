@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-08 22:14:16
+ * @LastEditTime: 2020-03-11 21:45:59
  */
 
 // const electron = require('electron')
@@ -21,9 +21,7 @@ function createWindow () {
   })
 
   // 加载index.html文件
-  // win.loadFile('index.html')
-
-  win.loadFile('cosmic.html')
+  win.loadFile('index.html')
 }
 
 //electron app生命周期方法：ready
