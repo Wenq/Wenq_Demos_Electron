@@ -1,3 +1,4 @@
 # git提交忽略文件
 
 node_modules/
+dist/

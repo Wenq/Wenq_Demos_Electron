@@ -14,12 +14,18 @@
   "build": {
     "appId": "com.cosmic.app",
     "mac": {
-      "target": ["dmg","zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis","zip"]
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
-},
+  },
   "author": "wenq",
   "license": "ISC",
   "devDependencies": {
