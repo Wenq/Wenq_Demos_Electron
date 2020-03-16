@@ -4,16 +4,17 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-12 21:53:52
+ * @LastEditTime: 2020-03-16 23:18:57
  */
 
 // const electron = require('electron')
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
+let win, addWnd;
 function createWindow() {
   // 创建浏览器窗口
-  let win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1300,
     height: 800,
     webPreferences: {
@@ -21,12 +22,37 @@ function createWindow() {
     }
   });
 
-  // 加载index.html文件
+  // 通过文件('index.html文件')加载页面
   win.loadFile('index.html')
+
+  // 通过链接加载页面
+  // win.loadURL('https://github.com')
+
   // //打开devtools调试窗口
   // win.webContents.openDevTools();
+  
   //设置工具栏
   setMenu();
+}
+
+//打开新增界面
+function showAddForm() {
+  addWnd = new BrowserWindow({
+    width: 500,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  addWnd.loadFile('./UI/addForm.html');
+}
+
+//打开调试窗口
+function showDevTools(form) {
+  if (form) {
+    form.webContents.openDevTools();
+  }
 }
 
 function setMenu() {
@@ -39,7 +65,8 @@ function setMenu() {
           label: 'add item',
           click: () => {
             //打开新增界面
-            alert('add item');
+            console.log('add item');
+            showAddForm();
           }
         },
         {
@@ -49,6 +76,7 @@ function setMenu() {
             alert('delete item');
           }
         },
+        { type: 'separator' },
         {
           label: 'quit',
           click: () => {
@@ -64,13 +92,16 @@ function setMenu() {
         {
           label: 'open devTools',
           click: () => {
+            showDevTools(win);
             //打开devtools调试窗口
-            win.webContents.openDevTools();
+            // win.webContents.openDevTools();
           }
-        }, {
+        },
+        { type: 'separator' },
+        {
           label: 'about',
           click: () => {
-//打开about界面
+            //打开about界面
           }
         }
       ]

@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: wenq
+ * @Date: 2020-03-11 21:41:17
+ * @LastEditors: wenq
+ * @LastEditTime: 2020-03-16 23:28:44
+ -->
 <!DOCTYPE html>
 <html>
 
@@ -24,7 +32,14 @@
 
 <body>
     <!--集成web页面系统到electron桌面应用-->
-    <iframe src='https://feature.kingdee.com:2024/baseline_a/'></iframe>
+    <iframe src=''></iframe>
+    <script>
+        window.onload = ()=>{
+            const { COSMICURL } = require('./utils/const');
+            let iframes = document.getElementsByTagName('iframe');
+            iframes[0].setAttribute('src', COSMICURL);
+        }
+    </script>
 </body>
 
 </html>

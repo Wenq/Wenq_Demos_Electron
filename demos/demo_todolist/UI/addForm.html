@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-10 22:13:08
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-12 21:12:38
+ * @LastEditTime: 2020-03-16 23:13:08
  -->
 <html>
 
@@ -42,9 +42,20 @@
 
 <body>
     <div class='container'>
-        <input class='input' value="123"/>
-        <button>add</button>
+        <input id='txtInput' class='input' value="123" />
+        <!-- <button onclick="btnClick(e)">add</button> -->
+        <button id='btnClick'>add</button>
     </div>
+    <script>
+        window.onload = () => {
+            let btn = document.getElementById('btnClick');
+            btn.onclick = (e) => {
+                let value = document.getElementById('txtInput').value;
+                // alert(value);
+                //将内容传递给主界面
+            }
+        }
+    </script>
 </body>
 
 </html>
