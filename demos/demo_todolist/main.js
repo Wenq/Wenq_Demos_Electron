@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-16 23:18:57
+ * @LastEditTime: 2020-03-17 22:42:36
  */
 
 // const electron = require('electron')
@@ -23,16 +23,16 @@ function createWindow() {
   });
 
   // 通过文件('index.html文件')加载页面
-  win.loadFile('index.html')
+  win.loadFile('index.html');
 
   // 通过链接加载页面
   // win.loadURL('https://github.com')
 
   // //打开devtools调试窗口
   // win.webContents.openDevTools();
-  
-  //设置工具栏
+
   setMenu();
+  listenMessage();
 }
 
 //打开新增界面
@@ -46,15 +46,16 @@ function showAddForm() {
   });
 
   addWnd.loadFile('./UI/addForm.html');
-}
+};
 
 //打开调试窗口
 function showDevTools(form) {
   if (form) {
     form.webContents.openDevTools();
   }
-}
+};
 
+//设置工具栏
 function setMenu() {
   Menu.setApplicationMenu(null); //清空默认工具栏
   let menus = [
@@ -65,7 +66,7 @@ function setMenu() {
           label: 'add item',
           click: () => {
             //打开新增界面
-            console.log('add item');
+            console.log('menu-item: add item');
             showAddForm();
           }
         },
@@ -76,12 +77,19 @@ function setMenu() {
             alert('delete item');
           }
         },
+        {
+          label: 'clear item',
+          click: ()=>{
+            //清空所有item
+            win.webContents.send('todolist:clear');//发送消息给主界面
+          }
+        },
         { type: 'separator' },
         {
           label: 'quit',
           click: () => {
             //退出整个程序
-            alert('quit');
+            console.log('quit');
           }
         }
       ]
@@ -110,6 +118,17 @@ function setMenu() {
   menus = Menu.buildFromTemplate(menus);
   Menu.setApplicationMenu(menus);
 };
+
+//监听消息
+function listenMessage() {
+  const electron = require('electron');
+  const { ipcMain } = electron;
+  ipcMain.on('todolist:add', (event, args) => {
+    addWnd.close(); //关闭addForm
+    console.log(`main-ipcMain.on: ${JSON.stringify(args)}`);
+    win.webContents.send('todolist:add', args);//发送消息给主界面
+  });
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

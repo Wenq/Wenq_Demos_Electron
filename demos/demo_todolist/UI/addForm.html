@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-10 22:13:08
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-16 23:13:08
+ * @LastEditTime: 2020-03-17 23:06:34
  -->
 <html>
 
@@ -51,8 +51,12 @@
             let btn = document.getElementById('btnClick');
             btn.onclick = (e) => {
                 let value = document.getElementById('txtInput').value;
-                // alert(value);
-                //将内容传递给主界面
+                // console.log(value);
+                //将内容传递给主线程（这里好像无法与渲染进程index.htmlindex.html直接通信？）
+                const electron = require('electron');
+                const { ipcRenderer } = electron;
+                console.log(`addForm-ipcRenderer.send: ${value}`);
+                ipcRenderer.send('todolist:add', { value });
             }
         }
     </script>

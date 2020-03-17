@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-12 21:51:49
+ * @LastEditTime: 2020-03-17 23:05:15
  -->
 <!DOCTYPE html>
 <html>
@@ -38,6 +38,26 @@
             <li>item2</li>
         </ul>
     </div>
+    <script>
+        window.onload = () => {
+            const electron = require('electron');
+            const { ipcRenderer } = electron;
+            //动态增加一个item
+            ipcRenderer.on('todolist:add', (event, args) => {
+                const { value } = args;
+                let liEl = document.createElement('li'); //新增一个li元素
+                liEl.innerText = value;
+                let ulEls = document.getElementsByTagName('ul');
+                ulEls[0].appendChild(liEl); //动态为列表增加一个item
+            });
+
+            //清除所有item
+            ipcRenderer.on('todolist:clear', (event, args) => {
+                let ulEls = document.getElementsByTagName('ul');
+                ulEls[0].innerHTML = '';
+            });
+        }
+    </script>
 </body>
 
 </html>
