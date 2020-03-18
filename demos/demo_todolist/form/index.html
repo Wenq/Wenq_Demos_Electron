@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-17 23:05:15
+ * @LastEditTime: 2020-03-18 21:52:28
  -->
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,8 @@
             height: 100%;
         }
     </style>
+    <!-- matrial css -->
+    <link href="../css/material-css.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
@@ -31,11 +33,11 @@
     <script>document.write(process.versions.chrome)</script>
     and Electron
     <script>document.write(process.versions.electron)</script>
-    <h1>todolist</h1>
+    <h1 class='mc-title'>todolist</h1>
     <div class='container'>
-        <ul>
-            <li>item1</li>
-            <li>item2</li>
+        <ul mc-layout="list">
+            <li class='mc-list-item'>item1</li>
+            <li class='mc-list-item'>item2</li>
         </ul>
     </div>
     <script>
@@ -46,6 +48,7 @@
             ipcRenderer.on('todolist:add', (event, args) => {
                 const { value } = args;
                 let liEl = document.createElement('li'); //新增一个li元素
+                liEl.className = 'mc-list-item';
                 liEl.innerText = value;
                 let ulEls = document.getElementsByTagName('ul');
                 ulEls[0].appendChild(liEl); //动态为列表增加一个item

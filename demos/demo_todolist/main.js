@@ -4,7 +4,7 @@
  * @Author: wenq
  * @Date: 2020-03-07 13:05:18
  * @LastEditors: wenq
- * @LastEditTime: 2020-03-17 22:42:36
+ * @LastEditTime: 2020-03-18 22:04:45
  */
 
 // const electron = require('electron')
@@ -23,7 +23,7 @@ function createWindow() {
   });
 
   // 通过文件('index.html文件')加载页面
-  win.loadFile('index.html');
+  win.loadFile('./form/index.html');
 
   // 通过链接加载页面
   // win.loadURL('https://github.com')
@@ -40,12 +40,14 @@ function showAddForm() {
   addWnd = new BrowserWindow({
     width: 500,
     height: 600,
+    parent: win,
+    modal: true,
     webPreferences: {
       nodeIntegration: true
     }
   });
 
-  addWnd.loadFile('./UI/addForm.html');
+  addWnd.loadFile('./form/addForm.html');
 };
 
 //打开调试窗口
@@ -79,7 +81,7 @@ function setMenu() {
         },
         {
           label: 'clear item',
-          click: ()=>{
+          click: () => {
             //清空所有item
             win.webContents.send('todolist:clear');//发送消息给主界面
           }
